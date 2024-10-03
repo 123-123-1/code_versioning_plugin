@@ -34,7 +34,7 @@ public class VersionControl {
           }
           Path copyCode =pluginFile.resolve(copyFile);
           if(!Files.exists(copyCode)){
-              Files.createDirectory(pluginFile);
+              Files.createDirectory(copyCode);
           }
     }
     public void settle(){
