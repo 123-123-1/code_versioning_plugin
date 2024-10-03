@@ -9,12 +9,16 @@ public class VersionControl {
     public static final String copyFile = "temp";
     private static VersionControl instance;
     private Path proPath;
+
+    //获得当前的类
     public static VersionControl getInstance() {
         if (instance == null) {
             instance = new VersionControl();
         }
         return instance;
     }
+
+    //检测项目目录下是否有插件所需的文件夹，没有则创建
     public static void init(Path pro)throws IOException{
           VersionControl instance = getInstance();
           if(instance.proPath!=pro){

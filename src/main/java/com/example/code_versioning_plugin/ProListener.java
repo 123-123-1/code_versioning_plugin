@@ -9,6 +9,7 @@ import java.nio.file.Path;
 
 public class ProListener implements com.intellij.openapi.project.ProjectManagerListener{
 
+    //项目打开时初始化
     public void projectOpened(@NotNull Project pro) {
          Path proDir = Path.of(pro.getBasePath());
         try {
@@ -18,6 +19,8 @@ public class ProListener implements com.intellij.openapi.project.ProjectManagerL
         }
     }
 
+
+    //项目关闭时的操作
     public void projectClosed(@NotNull Project pro) {
         VersionControl.getInstance().settle();
     }

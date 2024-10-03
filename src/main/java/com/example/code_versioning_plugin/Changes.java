@@ -24,6 +24,8 @@ public class Changes implements Serializable {
     public String filePath;
     public String fileName;
 
+
+    //生成变更记录
     public Changes(Path oldFile, Path newFile) throws IOException {
         if(oldFile == null) {
             if(Files.notExists(newFile))
@@ -57,6 +59,8 @@ public class Changes implements Serializable {
             }
         }
     }
+
+    //变更记录保存到指定路径
     public void saveToFile(String fileName) throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
             out.writeObject(this);
@@ -70,6 +74,8 @@ public class Changes implements Serializable {
         }
     }
 
+
+    //根据记录将文件回退到变更前
     public static List<String> rollBack(Changes changes,List<String> file) {
         for(int i = changes.addLines.size()-1; i>=0; i--){
             file.remove(changes.addLines.get(i).line);
