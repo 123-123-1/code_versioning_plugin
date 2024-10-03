@@ -3,14 +3,12 @@ package com.example.code_versioning_plugin;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 public class VersionControl {
     public  static final String fileName = "codeVersion";
     public static final String copyFile = "temp";
     private static VersionControl instance;
-    private Path sourceCode;
-    public M<Path> changedFiles;
+    private Path proPath;
     public static VersionControl getInstance() {
         if (instance == null) {
             instance = new VersionControl();
@@ -19,6 +17,10 @@ public class VersionControl {
     }
     public static void init(Path pro)throws IOException{
           VersionControl instance = getInstance();
+          if(instance.proPath!=pro){
+              instance.settle();
+              instance.proPath = pro;
+          }
           if(!Files.exists(pro)){
               throw new IOException("项目文件不存在");
           }
@@ -31,7 +33,7 @@ public class VersionControl {
               Files.createDirectory(pluginFile);
           }
     }
-    public List<Changes> settle(){
+    public void settle(){
 
     }
 }

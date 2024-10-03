@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public class ProListener implements com.intellij.openapi.project.ProjectManagerListener{
+
     public void projectOpened(@NotNull Project pro) {
          Path proDir = Path.of(pro.getBasePath());
         try {
@@ -15,5 +16,9 @@ public class ProListener implements com.intellij.openapi.project.ProjectManagerL
         } catch (IOException e) {
             System.out.println("Error initializing version control : " +e.getMessage());
         }
+    }
+
+    public void projectClosed(@NotNull Project pro) {
+        VersionControl.getInstance().settle();
     }
 }

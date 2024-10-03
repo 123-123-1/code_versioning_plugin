@@ -8,6 +8,6 @@ public class FileListener implements com.intellij.openapi.fileEditor.FileEditorM
     @Override
     public void fileOpened(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
         // 文件打开时的逻辑
-        System.out.println("File opened: " + file.getName());
+
     }
 }
